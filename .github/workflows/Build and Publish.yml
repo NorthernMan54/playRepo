@@ -68,12 +68,12 @@ jobs:
     needs: [get_tags, create_documentation]
     name: Publish Release Version
     if: ${{ needs.get_tags.outputs.BRANCH_NAME == 'main' }}
+    secrets:
+      npm_auth_token: ${{ secrets.npm_token }}
     steps:
     - uses: ./.github/workflows/npm-publish.yml
       with:
         install_cmd: npm ci
-      secrets:
-        npm_auth_token: ${{ secrets.npm_token }}
       id: publish_prod_release
     outputs:
       NPM_VERSION: ${{ steps.publish_prod_release.outputs.NPM_VERSION }}
