@@ -67,7 +67,6 @@ jobs:
   publish_prod_release:
     needs: [get_tags, create_documentation]
     name: Publish Release Version
-    id: 
     if: ${{ needs.get_tags.outputs.BRANCH_NAME == 'main' }}
     uses: ./.github/workflows/npm-publish.yml
     with:
