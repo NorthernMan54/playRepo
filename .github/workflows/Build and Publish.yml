@@ -71,7 +71,6 @@ jobs:
     uses: ./.github/workflows/npm-publish.yml
     with:
       install_cmd: npm ci
-      dynamically_adjust_version: true
     secrets:
       npm_auth_token: ${{ secrets.npm_token }}
 
