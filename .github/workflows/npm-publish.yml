@@ -55,10 +55,10 @@ jobs:
       - name: install
         run: ${{ inputs.install_cmd }}
 
-      - name: Fetch Adjust version script
-        if: ${{ inputs.dynamically_adjust_version }}
-        run: wget https://raw.githubusercontent.com/homebridge/.github/latest/.github/npm-version-script.js
-        working-directory: .github
+#      - name: Fetch Adjust version script
+#        if: ${{ inputs.dynamically_adjust_version }}
+#        run: wget -q https://raw.githubusercontent.com/homebridge/.github/latest/.github/npm-version-script.js
+#        working-directory: .github
 
       - name: Adjust version
         if: ${{ inputs.dynamically_adjust_version }}
