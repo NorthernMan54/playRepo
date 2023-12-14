@@ -90,3 +90,4 @@ jobs:
 
     outputs:
       NPM_VERSION: ${{ steps.package-version.outputs.current-version }}
+        description: 'Current version defined in the package.json file'
