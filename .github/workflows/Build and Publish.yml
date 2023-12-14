@@ -73,8 +73,6 @@ jobs:
       install_cmd: npm ci
     secrets:
       npm_auth_token: ${{ secrets.npm_token }}
-    outputs:
-      NPM_VERSION: ${{ steps.package-version.outputs.current-version }}
 
   publish_test_release:
     needs: [get_tags, create_documentation]
