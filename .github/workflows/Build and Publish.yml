@@ -93,7 +93,10 @@ jobs:
 
   publish_github_release:
     needs: publish_prod_release
+    runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
+
     - name: Create Release
       uses: softprops/action-gh-release@v1
       env:
