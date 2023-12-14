@@ -64,6 +64,19 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.ref }}
 
+  fake:
+    name: Generate output
+    runs-on: ubuntu-latest
+    # Map the job outputs to step outputs
+    outputs:
+      output1: ${{ steps.step1.outputs.firstword }}
+      output2: ${{ steps.step2.outputs.secondword }}
+    steps:
+      - id: step1
+        run: echo "firstword=hello" >> $GITHUB_OUTPUT
+      - id: step2
+        run: echo "secondword=world" >> $GITHUB_OUTPUT
+
   publish_prod_release:
     needs: [get_tags, create_documentation]
     name: Publish Release Version
@@ -88,9 +101,10 @@ jobs:
       npm_auth_token: ${{ secrets.npm_token }}
 
   publish_github_release:
-    needs: publish_prod_release
+    needs: [publish_prod_release, fake]
     runs-on: ubuntu-latest
     steps:
+    - run: ${{ needs.publish_prod_release.outputs.NPM_VERSION }}
     - run: ${{ needs.publish_prod_release.outputs.NPM_VERSION }}
     - uses: actions/checkout@v4
 

@@ -35,6 +35,10 @@ on:
       npm_auth_token:
         description: 'The npm access token used to publish the package'
         required: true
+    outputs:
+      NPM_VERSION:
+        value: ${{ jobs.publish_npm.outputs.NPM_VERSION }}
+
 
 jobs:
   publish_npm:
