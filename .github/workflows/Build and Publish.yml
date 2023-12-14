@@ -74,7 +74,7 @@ jobs:
     secrets:
       npm_auth_token: ${{ secrets.npm_token }}
     outputs:
-      NPM_VERSION: "1.0.1"
+      NPM_VERSION: ${{ steps.package-version.outputs.current-version }}
 
   publish_test_release:
     needs: [get_tags, create_documentation]
@@ -87,7 +87,7 @@ jobs:
       npm_version_command: 'pre'
       pre_id: ${{ needs.get_tags.outputs.TARGET_IMAGE_TAG }}
     secrets:
-          npm_auth_token: ${{ secrets.npm_token }}
+      npm_auth_token: ${{ secrets.npm_token }}
 
   publish_github_release:
     needs: publish_prod_release
