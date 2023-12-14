@@ -46,11 +46,6 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: lts/*
-
-    - name: Retrieve github-markdown-toc
-      run: |
-        wget -q https://raw.githubusercontent.com/ekalinin/github-markdown-toc/master/gh-md-toc
-        chmod a+x gh-md-toc
         
     - name: Create Table of Contents
       run: |
@@ -60,6 +55,7 @@ jobs:
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
+        git add *
         git commit -a -m "Update TOC"
 
     - name: Push changes
