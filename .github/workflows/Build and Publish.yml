@@ -71,6 +71,7 @@ jobs:
     uses: ./.github/workflows/npm-publish.yml
     with:
       install_cmd: npm ci
+      dynamically_adjust_version: true
     secrets:
       npm_auth_token: ${{ secrets.npm_token }}
 
@@ -91,6 +92,7 @@ jobs:
     needs: publish_prod_release
     runs-on: ubuntu-latest
     steps:
+    - run: ${{ needs.publish_prod_release.outputs.NPM_VERSION }}
     - uses: actions/checkout@v4
 
     - name: Create Release
