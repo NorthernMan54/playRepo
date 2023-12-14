@@ -85,7 +85,8 @@ jobs:
         uses: martinbeentjes/npm-get-version-action@v1.3.1
 
       - name: Return NPM Package Version
-        run: echo "NPM_VERSION: " ${{ steps.package-version.outputs.current-version }}
+        run: |
+          echo "NPM_VERSION: ${{ steps.package-version.outputs.current-version }}"
 
     outputs:
       NPM_VERSION: ${{ steps.package-version.outputs.current-version }}
